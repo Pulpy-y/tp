@@ -56,6 +56,14 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, "n/ y/", emptyFindCommand);
     }
 
+    @Test
+    public void findDescriptor_validPrefixInput_validPredicatesList() throws ParseException{
+        String emptyNamePrefixInput = " n/john";
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeWithoutPreamble(emptyNamePrefixInput, PREFIX_NAME);
+        FindDescriptor findDescriptor = new FindDescriptor(argMultimap);
+        assertTrue(!findDescriptor.getPredicates().isEmpty());
+    }
+
     // Find Descriptor tests
     @Test
     public void findDescriptor_emptyPrefixInput_emptyPredicatesList() throws ParseException {
